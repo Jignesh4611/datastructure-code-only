@@ -8,7 +8,6 @@ void create (int A[], int n )
 {
 
 }
-
 int main ()
 {
     int A[]={1,2,3,4,5};

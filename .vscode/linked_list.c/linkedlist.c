@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<stdint.h>
+#include <stdint.h>
 struct node
 {
     int data;
@@ -24,7 +24,7 @@ void create(int A[], int n)
         last = t;
     }
 }
- void display(struct node *p)
+void display(struct node *p)
 {
     while (p != NULL)
     {
@@ -45,40 +45,109 @@ int count(struct node *p)
 }
 int Rcount(struct node *p)
 {
-    if(p!=0)
+    if (p != 0)
     {
-        return Rcount(p->next)+1;
+        return Rcount(p->next) + 1;
     }
-    else 
-    {return 0;}
-}
-int sum (struct node *p)
-{
-    int s=0;
-    while (p!=0)
+    else
     {
-       s=s+p->data;
-       p=p->next; 
+        return 0;
+    }
+}
+int sum(struct node *p)
+{
+    int s = 0;
+    while (p != 0)
+    {
+        s = s + p->data;
+        p = p->next;
     }
     return s;
 }
 // MAX FOR LINKED LIST
 int max(struct node *p)
 {
-    int max= INT32_MIN;
+    int max = INT32_MIN;
     while (p)
     {
-        if(p->data>max)
-        max=p->data;
-        p=p->next;
-
+        if (p->data > max)
+            max = p->data;
+        p = p->next;
     }
     return max;
 }
+struct node *LSearch(struct node *p, int key)
+{
+    struct node *q;
+    while (p != NULL)
+    {
+        if (key == p->data)
+        {
+            q->next = p->next;
+            p->next = first;
+            first = p;
+            return p;
+        }
+        q=p;
+        
+    }
+    p = p->next;
+}
+struct node *RSearch(struct node *p, int key)
+{
+    if (p == NULL)
+    {
+        return NULL;
+    }
+    if (key == p->data)
+    {
+        return p;
+    }
+    return RSearch(p->next, key);
+}
+void Insert(struct node *p, int index, int x)
+
+{
+    struct node*t;
+    if(index<0||index>count(p))
+    return;
+    t=(struct node*)malloc(sizeof(struct node));
+    t->data=x;
+    if (index==0)
+    {
+        t->next=first;
+        first=t;
+    }
+    else{
+        for( int i=0; i<index-1; i++)
+        {
+            for(i=0; i<index-1; i++)
+            {
+                p=p->next;
+                t->next=p->next;
+                p->next=t;
+            }
+        }
+    }
+    
+}
 int main()
 {
-    int A[] = {1, 2, 3, 4, 5, 6, 7, 9, 9.9};
-    create(A,9);
-    printf("%d",max(first));
+    struct node *temp;
+    int A[] = {1, 2, 3};
+    create(A, 9);
+    // printf("%d",max(first));
+    temp = LSearch(first, 7);
+    temp = LSearch(first, 1);
+    if (temp)
+    {
+        printf("key is found %d", temp->data);
+    }
+    else
+    {
+        printf("key is not found");
+    }
+    printf("\n");
+    display(first);
     return 0;
 }
