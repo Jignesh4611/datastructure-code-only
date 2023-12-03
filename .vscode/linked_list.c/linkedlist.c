@@ -88,8 +88,7 @@ struct node *LSearch(struct node *p, int key)
             first = p;
             return p;
         }
-        q=p;
-        
+        q = p;
     }
     p = p->next;
 }
@@ -108,46 +107,33 @@ struct node *RSearch(struct node *p, int key)
 void Insert(struct node *p, int index, int x)
 
 {
-    struct node*t;
-    if(index<0||index>count(p))
-    return;
-    t=(struct node*)malloc(sizeof(struct node));
-    t->data=x;
-    if (index==0)
+    struct node *t;
+    int i;
+    if (index < 0 || index > count(p))
+        return;
+    t = (struct node *)malloc(sizeof(struct node));
+    t->data = x;
+    if (index == 0)
     {
-        t->next=first;
-        first=t;
-    }
-    else{
-        for( int i=0; i<index-1; i++)
-        {
-            for(i=0; i<index-1; i++)
-            {
-                p=p->next;
-                t->next=p->next;
-                p->next=t;
-            }
-        }
-    }
-    
-}
-int main()
-{
-    struct node *temp;
-    int A[] = {1, 2, 3};
-    create(A, 9);
-    // printf("%d",max(first));
-    temp = LSearch(first, 7);
-    temp = LSearch(first, 1);
-    if (temp)
-    {
-        printf("key is found %d", temp->data);
+        t->next = first;
+        first = t;
     }
     else
     {
-        printf("key is not found");
+        for (i = 0; i < index - 1; i++)
+        {
+
+            p = p->next;
+        }
+        t->next = p->next;
+        p->next = t;
     }
-    printf("\n");
+}
+int main()
+{
+    Insert(first, 0, 10);
+    Insert(first, 1, 20);
+    Insert(first, 2, 30);
     display(first);
     return 0;
 }
