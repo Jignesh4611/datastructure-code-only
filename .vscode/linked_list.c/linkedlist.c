@@ -122,7 +122,6 @@ void Insert(struct node *p, int index, int x)
     {
         for (i = 0; i < index - 1; i++)
         {
-
             p = p->next;
         }
         t->next = p->next;
