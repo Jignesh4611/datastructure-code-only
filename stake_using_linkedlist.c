@@ -48,12 +48,37 @@ void display()
     }
 printf("\n");
 }
+int isbalance(char *exp)
+{
+    int i;
+    for(i=0; exp[i]!='\0'; i++)
+    {
+        if(exp[i]=='(')
+        {
+            push(exp[i]);
+        }
+        else if(exp[i]==')')
+        {
+            if(top==NULL)
+            {
+                return 0;
+            }
+            pop();
+        }
+    }
+    if(top==NULL)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+}
 int main()
 {
-push(10);
-push(20);
-push(30);
-display();
-printf("%d",pop());
+char *exp="((a+b)*(c-d))";
+printf("%d",isbalance(exp));
+
     return 0;
 }
