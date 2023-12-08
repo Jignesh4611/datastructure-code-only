@@ -128,11 +128,112 @@ void Insert(struct node *p, int index, int x)
         p->next = t;
     }
 }
+void sortedInsert(struct node *p, int x)
+{
+    struct node *t, *q = NULL;
+    t = (struct node *)malloc((sizeof(struct node)));
+    t->data = x;
+    t->next = NULL;
+    if (first == NULL)
+    {
+        first = t;
+    }
+    else
+    {
+        while (p && p->data < x)
+        {
+            q = p;
+            p = p->next;
+        }
+        if (p == first)
+        {
+            t->next = first;
+            first = t;
+        }
+        else
+        {
+            t->next = q->next;
+            q->next = t;
+        }
+    }
+}
+int delete(struct node *p, int index)
+{
+    struct node *q=NULL;
+    int x = -1, i;
+    if (index < 1 || index > count(p))
+    {
+        return -1;
+    }
+    if (index == 1)
+    {
+        q = first;
+        x = first->data;
+        first = first->next;
+        free(q);
+        return x;
+    }
+    else
+    {
+        for(i=0; i<index-1; i++)
+        {
+            q=p;
+            p=p->next;
+        }
+        q->next=p->next;
+        x=p->data;
+        free(p);
+       return x;
+        
+    }
+}
+int delete(struct node *p, int index)
+{
+    struct node *q=NULL;
+    int x = -1, i;
+    if (index < 1 || index > count(p))
+    {
+        return -1;
+    }
+    if (index == 1)
+    {
+        q = first;
+        x = first->data;
+        first = first->next;
+        free(q);
+        return x;
+    }
+    else
+    {
+        for(i=0; i<index-1; i++)
+        {
+            q=p;
+            p=p->next;
+        }
+        q->next=p->next;
+        x=p->data;
+        free(p);
+       return x;
+        
+    }
+}
 int main()
 {
-    Insert(first, 0, 10);
-    Insert(first, 1, 20);
-    Insert(first, 2, 30);
+
+    // Insert(first, 0, 10);
+    // Insert(first, 1, 20);
+    // Insert(first, 2, 30);
+    // display(first);
+    sortedInsert(first, 15);
+    sortedInsert(first, 25);
+    sortedInsert(first, 8);
+    sortedInsert(first, 9);
+    sortedInsert(first, 7);
+    sortedInsert(first, 11);
+    sortedInsert(first, 26);
     display(first);
+    delete (first, 4);
+    display(first);
+    printf("%d",delete(first,4));
     return 0;
 }
