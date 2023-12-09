@@ -220,33 +220,50 @@ int issorted(struct node *p)
         x = p->data;
         p = p->next;
     }
-    return 1;}
+    return 1;
+}
 void removeduplicate(struct node *p)
 {
     struct node *q = p->next;
     while (q != NULL)
     {
-        if (p->data!= q->data)
+        if (p->data != q->data)
         {
             p = q;
-            q=q->next;
+            q = q->next;
         }
         else
         {
-            p->next=q->next;
+            p->next = q->next;
             free(q);
-            q=p->next;
+            q = p->next;
         }
     }
 }
-
+void removeduplicate1(struct node *p)
+{
+    struct node *q = NULL;
+    while (p != NULL)
+    {
+        if (q != NULL && q->data == p->data)
+        {
+            q->next = p->next;
+            free(p);
+            p = q->next;
+        }
+        else
+        {
+            q = p;
+            p = p->next;
+        }
+    }           
+}
 int main()
 {
-    int A[] = {10, 20, 30,10 ,40,30, 50,10};
-
+    int A[] = {10, 20, 30, 10, 10, 40, 30, 50};
     create(A, 8);
     display(first);
-   removeduplicate(first);
-   display(first);
+    removeduplicate1(first);
+    display(first);
     return 0;
 }
