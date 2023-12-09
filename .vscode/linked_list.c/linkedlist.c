@@ -208,32 +208,45 @@ int deletebyvalue(struct node *p, int y)
     free(p);
     return x;
 }
-int issorted(struct node*p)
+int issorted(struct node *p)
 {
-    int x=-65536;
-    while(p!=NULL)
+    int x = -65536;
+    while (p != NULL)
     {
-        if(p->data<x)
+        if (p->data < x)
         {
             return 0;
         }
-        x=p->data;
-        p=p->next;
+        x = p->data;
+        p = p->next;
     }
-    return 1;
+    return 1;}
+void removeduplicate(struct node *p)
+{
+    struct node *q = p->next;
+    while (q != NULL)
+    {
+        if (p->data!= q->data)
+        {
+            p = q;
+            q=q->next;
+        }
+        else
+        {
+            p->next=q->next;
+            free(q);
+            q=p->next;
+        }
+    }
 }
+
 int main()
 {
-    int A[] = {10, 20, 30, 35, 50};
-  
-    create(A,5);
-      display(first);
-   if(issorted(first))
-   {
-    printf("sorted");
-   }
-   else{
-    printf("Not sorted");
-   }
+    int A[] = {10, 20, 30,10 ,40,30, 50,10};
+
+    create(A, 8);
+    display(first);
+   removeduplicate(first);
+   display(first);
     return 0;
 }
