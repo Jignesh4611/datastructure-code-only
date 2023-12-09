@@ -159,7 +159,7 @@ void sortedInsert(struct node *p, int x)
 }
 int delete(struct node *p, int index)
 {
-    struct node *q=NULL;
+    struct node *q = NULL;
     int x = -1, i;
     if (index < 1 || index > count(p))
     {
@@ -175,48 +175,40 @@ int delete(struct node *p, int index)
     }
     else
     {
-        for(i=0; i<index-1; i++)
+        for (i = 0; i < index - 1; i++)
         {
-            q=p;
-            p=p->next;
+            q = p;
+            p = p->next;
         }
-        q->next=p->next;
-        x=p->data;
+        if (q == NULL)
+        {
+            q = first;
+            x = first->data;
+            first = first->next;
+            free(q);
+            return x;
+        }
+        q->next = p->next;
+        x = p->data;
         free(p);
-       return x;
-        
+        return x;
     }
 }
-int delete(struct node *p, int index)
+int deletebyvalue(struct node *p, int y)
 {
-    struct node *q=NULL;
+    struct node *q = NULL;
     int x = -1, i;
-    if (index < 1 || index > count(p))
+    for (i = 0; p->data = y; i++)
     {
-        return -1;
+        q = p;
+        p = p->next;
     }
-    if (index == 1)
-    {
-        q = first;
-        x = first->data;
-        first = first->next;
-        free(q);
-        return x;
-    }
-    else
-    {
-        for(i=0; i<index-1; i++)
-        {
-            q=p;
-            p=p->next;
-        }
-        q->next=p->next;
-        x=p->data;
-        free(p);
-       return x;
-        
-    }
+    q->next = p->next;
+    x = p->data;
+    free(p);
+    return x;
 }
+
 int main()
 {
 
@@ -232,8 +224,8 @@ int main()
     sortedInsert(first, 11);
     sortedInsert(first, 26);
     display(first);
-    delete (first, 4);
+  
+    printf("%d\n", delete (first, 4));
     display(first);
-    printf("%d",delete(first,4));
     return 0;
 }
