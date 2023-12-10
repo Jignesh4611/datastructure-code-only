@@ -258,12 +258,55 @@ void removeduplicate1(struct node *p)
         }
     }           
 }
+void reverse1(struct node *p)
+{
+    int *A,i=0;
+    struct node *q=p;
+    A=(int *)malloc(sizeof(int)*count(p));
+    while(q!=NULL)
+    {
+        A[i]=q->data;
+        q=q->next;
+        i++;
+    }
+    i--;
+    while(p!=NULL)
+    {
+        p->data=A[i];
+        p=p->next;
+        i--;
+    }
+    free(A);
+}
+void reverse2(struct node *p)
+{
+    struct node *q=NULL,*r=NULL;
+    while (p!=NULL)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }
+    first=q;
+}
+void reverse3(struct node *q,struct node *p)
+{
+    if(p!=NULL)
+    {
+        reverse3(p,p->next);
+        p->next=q;
+    }
+    else{
+        first =q;
+    }
+}
+
 int main()
 {
-    int A[] = {10, 20, 30, 10, 10, 40, 30, 50};
-    create(A, 8);
-    display(first);
-    removeduplicate1(first);
+    int A[] = {10,20,30,40,50};
+    create(A, 5);
+    reverse2(first);
     display(first);
     return 0;
 }
