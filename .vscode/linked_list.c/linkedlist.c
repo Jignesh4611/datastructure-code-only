@@ -5,8 +5,7 @@ struct node
 {
     int data;
     struct node *next;
-
-} *first = NULL;
+} *first = NULL, *second = NULL, *third = NULL;
 void create(int A[], int n)
 {
     int i;
@@ -19,6 +18,23 @@ void create(int A[], int n)
     {
         t = (struct node *)malloc(sizeof(struct node));
         t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+void create2(int B[], int n)
+{
+    int i;
+    struct node *t, *last;
+    second = (struct node *)malloc(sizeof(struct node));
+    second->data = B[0];
+    second->next = NULL;
+    last = second;
+    for (i = 1; i < n; i++)
+    {
+        t = (struct node *)malloc(sizeof(struct node));
+        t->data = B[i];
         t->next = NULL;
         last->next = t;
         last = t;
@@ -256,57 +272,115 @@ void removeduplicate1(struct node *p)
             q = p;
             p = p->next;
         }
-    }           
+    }
 }
 void reverse1(struct node *p)
 {
-    int *A,i=0;
-    struct node *q=p;
-    A=(int *)malloc(sizeof(int)*count(p));
-    while(q!=NULL)
+    int *A, i = 0;
+    struct node *q = p;
+    A = (int *)malloc(sizeof(int) * count(p));
+    while (q != NULL)
     {
-        A[i]=q->data;
-        q=q->next;
+        A[i] = q->data;
+        q = q->next;
         i++;
     }
     i--;
-    while(p!=NULL)
+    while (p != NULL)
     {
-        p->data=A[i];
-        p=p->next;
+        p->data = A[i];
+        p = p->next;
         i--;
     }
     free(A);
 }
 void reverse2(struct node *p)
 {
-    struct node *q=NULL,*r=NULL;
-    while (p!=NULL)
+    struct node *q = NULL, *r = NULL;
+    while (p != NULL)
     {
-        r=q;
-        q=p;
-        p=p->next;
-        q->next=r;
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
     }
-    first=q;
+    first = q;
 }
-void reverse3(struct node *q,struct node *p)
+void reverse3(struct node *q, struct node *p)
 {
-    if(p!=NULL)
+    if (p != NULL)
     {
-        reverse3(p,p->next);
-        p->next=q;
+        reverse3(p, p->next);
+        p->next = q;
     }
-    else{
-        first =q;
+    else
+    {
+        first = q;
     }
 }
-
+void concat(struct node *p, struct node *q)
+{
+    third = p;
+    while (p->next != 0)
+    {
+        p = p->next;
+    }
+    p->next = q;
+}
+void merge(struct node *p, struct node *q)
+{
+    struct node *last;
+    if (p->data < q->data)
+    {
+        third = last = p;
+        p = p->next;
+        third->next = NULL;
+    }
+    else
+    {
+        third = last = q;
+        q = q->next;
+        third->next = NULL;
+    }
+    while (p != NULL && q != NULL)
+    {
+        if (p->data < q->data)
+        {
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else
+        {
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+    if (p != NULL)
+        last->next = p;
+    if (q != NULL)
+        last->next = q;
+}
 int main()
 {
-    int A[] = {10,20,30,40,50};
+    int A[] = {10, 20, 30, 40, 50};
+    int B[] = {11, 22, 25, 34, 10, 55};
     create(A, 5);
-    reverse2(first);
+    create2(B, 5);
+    printf("first\n");
     display(first);
+    printf("\n");
+
+    printf("second\n");
+    display(second);
+    printf("\n");
+
+    merge(first, second);
+    printf("concanicated\n");
+    display(third);
+    printf("\n");
     return 0;
 }
