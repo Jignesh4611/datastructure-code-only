@@ -1,2 +1,2 @@
 
-    while (p != NULL)
+       if( q!=NULL)

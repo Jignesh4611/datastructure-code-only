@@ -263,7 +263,7 @@ void removeduplicate1(struct node *p)
     {
         if (q != NULL && q->data == p->data)
         {
-            q->next = p->next;
+            q->next= p->next;
             free(p);
             p = q->next;
         }
@@ -364,23 +364,38 @@ void merge(struct node *p, struct node *q)
     if (q != NULL)
         last->next = q;
 }
+int isloop(struct node *f)
+{
+    struct node *p,*q;
+    p=q=f;
+    do{
+        p=p->next;
+        q=q->next;
+       if( q!=NULL)
+       {
+      q= q->next;
+       }
+    }
+    while(p!=NULL&&q!=NULL&&p!=q);
+   if(q==p)
+   {
+    return 1;
+   }
+   else 
+   {
+    return 0;
+   }
+}
 int main()
 {
-    int A[] = {10, 20, 30, 40, 50};
-    int B[] = {11, 22, 25, 34, 10, 55};
+    
+    struct node *t1,*t2;
+    int A[] = {10, 20, 30, 40,50 ,60 ,70 ,80 ,90 ,100};
+    
     create(A, 5);
-    create2(B, 5);
-    printf("first\n");
-    display(first);
-    printf("\n");
-
-    printf("second\n");
-    display(second);
-    printf("\n");
-
-    merge(first, second);
-    printf("concanicated\n");
-    display(third);
-    printf("\n");
+   t1=first->next->next;
+   t2=first->next->next->next->next;
+   t2->next=t1;
+   printf("%d",isloop(first));
     return 0;
 }
