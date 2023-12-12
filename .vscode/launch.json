@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Jignesh/OneDrive/Desktop/data structure code only",
-      "program": "c:/Users/Jignesh/OneDrive/Desktop/data structure code only/build/Debug/outDebug",
+      "cwd": "d:/data structure code only",
+      "program": "d:/data structure code only/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
