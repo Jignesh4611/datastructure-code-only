@@ -75,7 +75,7 @@ int sum(struct node *p)
     int s = 0;
     while (p != 0)
     {
-        s = s + p->data;
+        s = s + p->data ;
         p = p->next;
     }
     return s;
