@@ -110,7 +110,7 @@ struct node *LSearch(struct node *p, int key)
 }
 struct node *RSearch(struct node *p, int key)
 {
-    if (p == NULL)
+    if (p  == NULL)
     {
         return NULL;
     }
