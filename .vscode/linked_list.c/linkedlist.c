@@ -3,9 +3,9 @@
 #include <stdint.h>
 struct node
 {
-      int data;
+    int data;
     struct node *next;
-} *first = NULL, *second =  NULL, *third = NULL;
+} *first = NULL, *second = NULL, *third = NULL;
 void create(int A[], int n)
 {
     int i;
@@ -75,7 +75,7 @@ int sum(struct node *p)
     int s = 0;
     while (p != 0)
     {
-        s = s + p->data ;
+        s = s + p->data;
         p = p->next;
     }
     return s;
