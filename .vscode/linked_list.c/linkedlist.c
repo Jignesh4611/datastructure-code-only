@@ -5,7 +5,7 @@ struct node
 {
     int data;
     struct node *next;
-} *first = NULL, *second = NULL, *third = NULL;
+} *first = NULL, *second =  NULL, *third = NULL;
 void create(int A[], int n)
 {
     int i;
