@@ -3,7 +3,7 @@
 #include <stdint.h>
 struct node
 {
-    int data;
+      int data;
     struct node *next;
 } *first = NULL, *second =  NULL, *third = NULL;
 void create(int A[], int n)
