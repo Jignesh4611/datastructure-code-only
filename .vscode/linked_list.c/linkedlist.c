@@ -110,7 +110,7 @@ struct node *LSearch(struct node *p, int key)
 }
 struct node *RSearch(struct node *p, int key)
 {
-    if (p  == NULL)
+    if (p == NULL)
     {
         return NULL;
     }
@@ -388,10 +388,8 @@ int isloop(struct node *f)
 }
 int main()
 {
-
     struct node *t1, *t2;
     int A[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-
     create(A, 5);
     t1 = first->next->next;
     t2 = first->next->next->next->next;
