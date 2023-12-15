@@ -19,7 +19,6 @@ void Push()
         stack[top] = a;
     }
 }
-
 void Pop()
 {
     if (top == -1)
