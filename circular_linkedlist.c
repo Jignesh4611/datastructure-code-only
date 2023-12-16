@@ -1,15 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 struct node
 {
     int data;
     struct node *next;
-} *head, *last, *t;
+} *head, *last;
+void create(int A[], int n);
+int length(struct node *p);
+void Insert(struct node *p, int index, int x);
+void display(struct node *h);
+
+int main()
+{
+    int A[] = {1,2, 3, 4, 5, 6};
+    create(A, 6);
+    Insert(head, 3, 10);
+    display(head);
+}
+
 void create(int A[], int n)
 {
+    struct node *t;
     int i;
-    head = (struct node *)malloc(sizeof(struct node ));
+    head = (struct node *)malloc(sizeof(struct node));
     head->data = A[0];
     head->next = head;
     last = head;
@@ -26,18 +39,18 @@ void create(int A[], int n)
 int length(struct node *p)
 {
     int x = 0;
-    while (p->next != head)
-    {
+   do {
         x++;
         p = p->next;
     }
-    return x+1;
+     while (p != head);
+    return x ;
 }
 void Insert(struct node *p, int index, int x)
 {
     struct node *t;
     int i;
-    if(index<0||index > length(p))
+    if (index < 0 || index > length(p))
     {
         return;
     }
@@ -46,12 +59,13 @@ void Insert(struct node *p, int index, int x)
     {
         t = (struct node *)malloc(sizeof(struct node));
         t->data = x;
-        if (head = NULL)
+        if (head == NULL)
         {
             head = t;
             head->next = head;
+            last=head;
+            
         }
-
         else
         {
             while (p->next != head)
@@ -60,24 +74,29 @@ void Insert(struct node *p, int index, int x)
             }
             p->next = t;
             t->next = head;
+            head=t;
+            
+            
         }
     }
     else
     {
-        for (i = 0; i < index - 1; i++)
+        for (i =0 ; i < index-1 ; i++)
         {
+                  p=p->next;
+        }
             t = (struct node *)malloc(sizeof(struct node));
             t->data = x;
             t->next = p->next;
-            p->next = t;
-        }
+            p->next = t; 
+            last=t;
+
+
     }
 }
 
-
 void display(struct node *h)
 {
-
     if (head == NULL)
     {
         printf("linked list is Null");
@@ -88,15 +107,8 @@ void display(struct node *h)
         {
             printf("%d ", h->data);
             h = h->next;
-        } while (h != head);
-        printf("\n");
-    }
-}
-
-int main()
-{
-    int A[] = {2, 3, 4, 5, 6};
-    create(A, 5);
-    Insert(head,2,10);
-    display(head);
+        } 
+        while (h != head);
+        
+    }printf("\n");
 }
