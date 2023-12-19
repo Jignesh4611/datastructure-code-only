@@ -46,7 +46,7 @@ int length(struct node *p)
      while (p != head);
     return x ;
 }
-//at that position
+//before that position
 void Insert(struct node *p, int index, int x)
 {
     struct node *t;
@@ -82,7 +82,7 @@ void Insert(struct node *p, int index, int x)
     }
     else
     {
-        for (i =0 ; i < index-2 ; i++)
+        for (i =1 ; i < index-2 ; i++)
         {
                   p=p->next;
         }
