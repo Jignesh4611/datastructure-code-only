@@ -8,17 +8,19 @@ struct node
 
 } *first = NULL;
 void create(int A[], int n);
+void insert(struct node *p, int index, int x);
+
 int display(struct node *p);
 
 int length(struct node *p);
 
-
 int main()
 {
     int A[] = {1, 2, 3};
-    create(A,4);
-
-   printf("length is %d\n",length(first)) ;
+    create(A, 3);
+    printf("Length befere %d\n", length(first));
+    insert(first, 3, 10);
+    printf("Length after %d\n", length(first));
     display(first);
     return 0;
 }
@@ -58,4 +60,45 @@ int display(struct node *p)
         p = p->next;
     }
     printf("\n");
+}
+void insert(struct node *p, int index, int x)
+{
+    struct node *t;
+    int i;
+    if (index < 0 || index > length(p))
+    {
+        return;
+    }
+    if (index == 0)
+    {
+        t = (struct node *)malloc(sizeof(struct node));
+        t->data = x;
+        t->next = first;
+        t->prev = NULL;
+   if (first != NULL)
+        {
+            first->prev = t; 
+        }        first = t;
+    }
+    else
+    {
+        for (i = 0; i < index-1 ; i++)
+        {
+            p = p->next;
+        }
+      
+        t = (struct node *)malloc(sizeof(struct node));
+        t->data = x;
+          if(p->next==NULL)
+        {
+            p->next=t;
+            t->prev=p;
+            t->next=NULL;
+            return;
+        }
+        t->next = p->next;
+        t->prev = p;
+        p->next->prev = t;
+        p->next = t;
+    }
 }
