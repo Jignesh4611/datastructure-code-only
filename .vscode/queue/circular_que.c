@@ -43,7 +43,8 @@ int dequeue(struct queue *q)
 }
 void display(struct queue q)
 {
-    for (int i = q.front + 1; i <= q.rear; i++)
+    int i;
+    for ( i = q.front + 1; i <= q.rear; i++)
     {
         printf("%d", q.Q[i]);
         printf("\n");

@@ -19,7 +19,7 @@ void enqueue(struct queue *q, int x)
 {
     if (q->rear == q->size - 1)
     {
-        printf("queue is full");
+        printf("queue is full\n");
     }
     else
     {
@@ -43,7 +43,8 @@ int dequeue(struct queue *q)
 }
 void display(struct queue q)
 {
-    for (int i = q.front + 1; i <= q.rear; i++)
+    int i;
+    for (i = q.front + 1; i <= q.rear; i++)
     {
         printf("%d", q.Q[i]);
         printf("\n");
@@ -53,12 +54,33 @@ int main()
 {
     struct queue q;
     create(&q, 5);
+    display(q);
+    printf("******************\n");
     enqueue(&q, 10);
+    display(q);
+        printf("******************\n");
     enqueue(&q, 20);
+    display(q); 
+       printf("******************\n");
+
+
     enqueue(&q, 30);
     display(q);
-    dequeue(&q);
-    printf("\n");
+        printf("******************\n");
+
+    enqueue(&q, 30);
     display(q);
+        printf("******************\n");
+
+    enqueue(&q, 30);
+     display(q);
+         printf("******************\n");
+
+    enqueue(&q, 30);
+
+    display(q);
+        printf("******************\n");
+
+
     return 0;
 }
