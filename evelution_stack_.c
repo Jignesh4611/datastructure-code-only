@@ -13,7 +13,7 @@ int pop();
 int eval(char * postfix);
 int main ()
 {
-   char *postfix="234*+82/-";
+   char *postfix="382/+2+25/6*-4+";
    printf("result is %d",eval(postfix));
 return 0;
 }

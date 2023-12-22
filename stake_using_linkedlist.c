@@ -171,7 +171,7 @@ char *intopost(char *infix)
 }
 int main()
 {
-    char *infix = "((a+b)*c)-d^e^f";
+    char *infix = "3+8/2+2-2/5*6+4";
     push('#');
     char *postfix = intopost(infix);
     printf("%s ", postfix);
