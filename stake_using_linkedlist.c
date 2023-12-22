@@ -52,7 +52,6 @@ void display()
 }
 int isbalance(char *exp)
 {
-    top = NULL;
     int i;
     for (i = 0; exp[i] != '\0'; i++)
     {
@@ -176,7 +175,6 @@ int main()
     push('#');
     char *postfix = intopost(infix);
     printf("%s ", postfix);
-       printf("%c",top->next);
+    printf("%c", top->next);
     return 0;
- 
 }
