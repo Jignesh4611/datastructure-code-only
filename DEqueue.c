@@ -16,9 +16,18 @@ void display(struct queue q);
 int main()
 {
     struct queue q;
+    create(&q, 4);
+
     rear_enqueue(&q, 1);
-    rear_enqueue(&q, 1);
-    rear_enqueue(&q, 1);
+    rear_enqueue(&q, 2);
+    rear_enqueue(&q, 3);
+    front_dequeue(&q);
+    front_dequeue(&q);
+    front_enqueue(&q, 21);
+    front_enqueue(&q, 21);
+    rear_dequeue(&q);
+    printf("   %d \n ", q.front);
+    printf("   %d \n ", q.rear);
 
     display(q);
 }
@@ -49,21 +58,23 @@ int rear_dequeue(struct queue *q)
     }
     else
     {
+
+        x = q->Q[q->rear];
         q->rear--;
-        x = q->Q[q->rear--];
     }
     return x;
 }
 void front_enqueue(struct queue *q, int x)
 {
-    if (q->rear == q->size - 1)
+    if (q->front == -1)
     {
-        printf("queue is full");
+        printf("en_queue is not possible\n");
     }
     else
     {
+
+        q->Q[q->front] = x;
         q->front--;
-        q->Q[q->front--] = x;
     }
 }
 int front_dequeue(struct queue *q)

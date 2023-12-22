@@ -164,7 +164,7 @@ char *intopost(char *infix)
     }
     while (top != NULL && top->data != ')')
     {
-     
+
         postfix[j++] = pop();
     }
     postfix[j] = '\0';
@@ -176,5 +176,7 @@ int main()
     push('#');
     char *postfix = intopost(infix);
     printf("%s ", postfix);
+       printf("%c",top->next);
     return 0;
+ 
 }
