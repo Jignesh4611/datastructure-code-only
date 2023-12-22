@@ -41,7 +41,7 @@ int pop(struct stack *st)
   }
   return x;
 }
-int display(struct stack st)
+void display(struct stack st)
 {
   for (int i = st.top; i >= 0; i--)
   {
